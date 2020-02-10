@@ -185,7 +185,7 @@ export default class FontPicker extends PureComponent<Props, State> {
 	 * Generate <ul> with all font families
 	 */
 	generateFontList(fonts: Font[]): ReactElement {
-		const { activeFontFamily } = this.props;
+		const { activeFontFamily, filter } = this.props;
 		const { loadingStatus } = this.state;
 
 		if (loadingStatus !== "finished") {
@@ -193,7 +193,7 @@ export default class FontPicker extends PureComponent<Props, State> {
 		}
 		return (
 			<ul className="font-list">
-				{fonts.map(
+				{fonts.filter(filter).map(
 					(font): ReactElement => {
 						const isActive = font.family === activeFontFamily;
 						const fontId = getFontId(font.family);
